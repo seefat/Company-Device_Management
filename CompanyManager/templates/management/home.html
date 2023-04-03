@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <h2>Welcome {{ user.username }}</h2>
+    {% if not user.company %}
+      <p>You do not have a company associated with your account. Please create a company to proceed.</p>
+      <a href="{% url 'management:company_create' %}">Create Company</a>
+    {% else %}
+      <p>You have a company associated with your account.</p>
+      <p><a href="{% url 'management:employee_create' %}">Add Employee</a></p>
+      <p><a href="{% url 'management:employee_list' %}">Employee List</a></p>
+      <p><a href="{% url 'management:device_create' %}">Add Device</a></p>
+      <p><a href="{% url 'management:device_list' %}">Device List</a></p>
+      <p><a href="{% url 'management:checkout_create' %}">Checkout Device</a></p>
+      <p><a href="{% url 'management:checkin_create' %}">Checkin Device</a></p>
+      <p><a href="{% url 'management:devicelog_list' %}">View Device Logs</a></p>
+    {% endif %}
+  {% else %}
+    <p>Please <a href="{% url 'log:login' %}">login</a> to access your account.</p>
+  {% endif %}
+{% endblock %}
