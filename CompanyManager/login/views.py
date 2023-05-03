@@ -26,7 +26,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('management:home')
+    return redirect('log:login')
 
 def to_redirect(request):
     if request.user.is_authenticated:

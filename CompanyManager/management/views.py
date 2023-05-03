@@ -63,7 +63,8 @@ class EmployeeList(LoginRequiredMixin, ListView):
     context_object_name = 'employees'
 
     def get_queryset(self):
-        return Employee.objects.filter(company=self.request.user.company)
+        return Employee.objects.all
+        #return Employee.objects.filter(company=self.request.user.company)
 
 
 class DeviceCreateView(CreateView):
@@ -91,11 +92,12 @@ class DeviceDeleteView(DeleteView):
 
 class DeviceList(LoginRequiredMixin, ListView):
     model = Device
-    template_name = 'management/Device_list.html'
+    template_name = 'management/device_list.html'
     context_object_name = 'devices'
 
     def get_queryset(self):
-        return Employee.objects.filter(company=self.request.user.company)
+        return Device.objects.all
+        #return Device.objects.filter(company=self.request.user.company)
 
 class CheckoutCreateView(CreateView):
     model = CheckOut
